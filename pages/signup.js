@@ -26,7 +26,7 @@ import styles from '../styles/Login.module.css'
 
 
 
-export default function LoginIn() {
+export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -59,10 +59,10 @@ export default function LoginIn() {
             
             <BoltSharpIcon sx={{ fontSize: 50, mt:-6, mr:55, mb:6}} color="primary"/>
             
-            <Typography variant="h4" mb={2} mr={47} sx={{fontWeight: 600}}>
-              Login
+            <Typography variant="h4" mb={2} mr={43} sx={{fontWeight: 600}}>
+              Sign Up
             </Typography>
-            <Typography mr={18} mb={5}>
+            <Typography mr={19} mb={5}>
                 See your growth and get consulting support!
             </Typography>
         
@@ -93,8 +93,23 @@ export default function LoginIn() {
 
               
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 0 }} >
+            Name*
+            <TextField
+             hiddenLabel
+             margin="normal"
+             
+             required
+             fullWidth
+             id="name"
+             placeholder="Name"
+             name="name"
+             autoComplete="name"
+             autoFocus
+             size='small'
             
-               Email*
+             
+           />
+           Email*
               <TextField
                 hiddenLabel
                 margin="normal"
@@ -126,29 +141,23 @@ export default function LoginIn() {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" sx={{ '& .MuiSvgIcon-root': { fontSize: 18 } }}/>}
                 label="Remember me"
-                
-                  
-                
               />
-              <Link href="#" variant="body2" ml={27}>
-                    Forgot password?
-              </Link>
               <Button
                 type="submit"
                 fullWidth
                 
                 variant="contained"
                 
-                sx={{ mt: 2, mb: 3, borderRadius:30, p:1 }}
+                sx={{ mt: 2, mb: 2, borderRadius:30, p:1 }}
               >
                 Sign Up
               </Button>
-               
               <Grid container>
                 
                 <Grid item>
-                  <Link href="/signup" variant="body2" ml={36} >
-                    {"Do not you have an account?"}
+                    Already have an Account? 
+                  <Link href="/login" variant="body2">
+                  Login In
                   </Link>
                 </Grid>
               </Grid>
@@ -157,24 +166,17 @@ export default function LoginIn() {
               
             
           </Box>
-          <Typography variant="body2" color="text.secondary" align="center" mb={4}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://truetn.com/">
-                www.truetn.com
-           </Link> 
-            <span> 2021</span>
-          </Typography>
+          
     
                 
         </Grid>
-        
         <Grid
           item
           xs={false}
           sm={4}
           md={6}
           sx={{
-            backgroundImage: 'url(https://i.ibb.co/8sT76XN/pexels-tima-miroshnichenko-7567588.jpg)',
+            backgroundImage: 'url(https://i.ibb.co/ns3tpJ0/pexels-rodnae-productions-8369653.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -182,7 +184,6 @@ export default function LoginIn() {
             backgroundPosition: 'center',
           }}
         />
-        
       </Grid>
 
       
