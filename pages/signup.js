@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import BoltSharpIcon from "@mui/icons-material/BoltSharp";
 import styles from "../styles/Login.module.css";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { signup } from "../redux/userSlice";
 import { useSelector } from "react-redux";
@@ -23,11 +24,25 @@ export default function SignUp() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const [nameError, setNameError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+
 	const user = useSelector(selectUser);
 
 	const dispatch = useDispatch();
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		if (name == "") {
+			setNameError;
+		}
+		if (email == "") {
+			setEmailError(true);
+		}
+		if (password == "") {
+			setPasswordError(true);
+		}
 
 		dispatch(
 			signup({
@@ -38,6 +53,15 @@ export default function SignUp() {
 			})
 		);
 	};
+
+	// const validate = () => {
+	// 	let temp = {};
+
+	// 	temp.name = value.name ? "" : "this filed is required";
+	// 	temp.email = /$|.+@.+..+/.test(value.email) ? "" : "Email is required";
+	// 	temp.password =
+	// 		value.password.length > 9 ? "" : "Minimum 10 numbers are required";
+	// };
 
 	return (
 		<div>
@@ -132,6 +156,8 @@ export default function SignUp() {
 									size="small"
 									value={name}
 									onChange={(e) => setName(e.target.value)}
+									error={nameError}
+									helperText="Incorrect entry."
 								/>
 								Email*
 								<TextField
@@ -147,6 +173,8 @@ export default function SignUp() {
 									size="small"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
+									error={emailError}
+									helperText="Incorrect entry."
 								/>
 								Password*
 								<TextField
@@ -162,6 +190,8 @@ export default function SignUp() {
 									size="small"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
+									error={passwordError}
+									helperText="Incorrect entry."
 								/>
 								<FormControlLabel
 									control={

@@ -22,10 +22,21 @@ export default function LoginIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const dispatch = useDispatch();
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+
 	const user = useSelector(selectUser);
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const dispatch = useDispatch();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		if (email == "") {
+			setEmailError(true);
+		}
+		if (password == "") {
+			setPasswordError(true);
+		}
 
 		dispatch(
 			login({
@@ -129,6 +140,8 @@ export default function LoginIn() {
 									size="small"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
+									error={emailError}
+									helperText="Incorrect entry."
 								/>
 								Password*
 								<TextField
@@ -144,6 +157,8 @@ export default function LoginIn() {
 									size="small"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
+									error={passwordError}
+									helperText="Incorrect entry."
 								/>
 								<FormControlLabel
 									control={
@@ -164,7 +179,7 @@ export default function LoginIn() {
 									variant="contained"
 									sx={{ mt: 2, mb: 3, borderRadius: 30, p: 1 }}
 								>
-									Sign Up
+									Login
 								</Button>
 								<Grid container>
 									<Grid item>
