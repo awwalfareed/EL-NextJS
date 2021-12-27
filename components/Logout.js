@@ -23,7 +23,7 @@ const Logout = () => {
 				
 				<span>
 					Your Password:{userData.password}<br/>
-					Your Email:<span>{userData.email}</span>
+					Your Email:<span>{userData.email}{userData.email}</span>
 				</span>
 			</h1>
 			<Button variant="contained" onClick={(e) => handleLogout(e)}>
