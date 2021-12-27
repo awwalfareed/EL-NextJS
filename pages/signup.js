@@ -18,15 +18,17 @@ import { signup } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import SuccessForm from "../components/SuccessForm";
+import { setUserData } from "../redux/userSlice";
+import Router from "next/router";
 
 export default function SignUp() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [nameError, setNameError] = useState("");
-	const [emailError, setEmailError] = useState("");
-	const [passwordError, setPasswordError] = useState("");
+	const [nameError, setNameError] = useState(false);
+	const [emailError, setEmailError] = useState(false);
+	const [passwordError, setPasswordError] = useState(false);
 
 	const user = useSelector(selectUser);
 
@@ -34,22 +36,34 @@ export default function SignUp() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+
+		setNameError(false)
+		setEmailError(false)
+		setPasswordError(false)
 		if (name == "") {
-			setNameError;
+			setNameError(true)
+			return Router.push("/signup");
 		}
 		if (email == "") {
 			setEmailError(true);
+			return Router.push("/signup");
 		}
 		if (password == "") {
 			setPasswordError(true);
+			return Router.push("/signup");
 		}
+	
 
 		dispatch(
 			signup({
+				signUp: true,
+			})
+		);
+		dispatch(
+			setUserData({
 				name: name,
 				email: email,
 				password: password,
-				signUp: true,
 			})
 		);
 	};
@@ -157,7 +171,8 @@ export default function SignUp() {
 									value={name}
 									onChange={(e) => setName(e.target.value)}
 									error={nameError}
-									helperText="Incorrect entry."
+									helperText={nameError?"invalid input name":null}
+									
 								/>
 								Email*
 								<TextField
@@ -174,7 +189,7 @@ export default function SignUp() {
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									error={emailError}
-									helperText="Incorrect entry."
+									helperText={emailError?"invalid input email":null}
 								/>
 								Password*
 								<TextField
@@ -191,7 +206,7 @@ export default function SignUp() {
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 									error={passwordError}
-									helperText="Incorrect entry."
+									helperText={passwordError?"invalid input name":null}
 								/>
 								<FormControlLabel
 									control={

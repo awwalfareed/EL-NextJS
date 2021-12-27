@@ -17,13 +17,17 @@ import { login } from "../redux/userSlice";
 import Logout from "../components/Logout";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
+import { setUserData } from "../redux/userSlice";
+import Router from "next/router";
+
 
 export default function LoginIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [emailError, setEmailError] = useState("");
-	const [passwordError, setPasswordError] = useState("");
+	const [emailError, setEmailError] = useState(false);
+	const [passwordError, setPasswordError] = useState(false);
+
 
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
@@ -31,18 +35,29 @@ export default function LoginIn() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (email == "") {
-			setEmailError(true);
+		setEmailError(false)
+		setPasswordError(false)
+		
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if (email == "" ) {
+			setEmailError(true );
+			return Router.push("/login");
+
 		}
 		if (password == "") {
 			setPasswordError(true);
+			return Router.push("/login");
 		}
 
 		dispatch(
 			login({
+				loggedIn: true,
+			})
+		);
+		dispatch(
+			setUserData({
 				email: email,
 				password: password,
-				loggedIn: true,
 			})
 		);
 	};
@@ -141,7 +156,8 @@ export default function LoginIn() {
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									error={emailError}
-									helperText="Incorrect entry."
+									helperText={emailError?"invalid input email":null}
+									
 								/>
 								Password*
 								<TextField
@@ -158,7 +174,7 @@ export default function LoginIn() {
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 									error={passwordError}
-									helperText="Incorrect entry."
+									helperText={passwordError?"invalid input password":null}
 								/>
 								<FormControlLabel
 									control={

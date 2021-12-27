@@ -1,11 +1,14 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { logout, selectUser } from "../redux/userSlice";
+import { logout, selectUser, selectUserData } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { setUserData } from "../redux/userSlice";
+
 
 const Logout = () => {
 	const user = useSelector(selectUser);
+	const userData = useSelector(selectUserData);
 	const dispatch = useDispatch();
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -15,10 +18,12 @@ const Logout = () => {
 	return (
 		<div>
 			<h1>
-				Welcome,{user.name}
+				Welcome,
+				<hr/>
+				
 				<span>
-					Your Password:{user.password}
-					Your Email:{user.email}
+					Your Password:{userData.password}<br/>
+					Your Email:<span>{userData.email}</span>
 				</span>
 			</h1>
 			<Button variant="contained" onClick={(e) => handleLogout(e)}>
