@@ -159,7 +159,7 @@ export default function SignUp() {
 								<Avatar
 									src="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20190923152039%21Google_%22G%22_Logo.svg"
 									size={100}
-									backgroundColor="rgba(0,0,0,0)"
+									
 									sx={{ width: 20, height: 20 }}
 								/>
 								Sign up with Google
