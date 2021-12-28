@@ -20,6 +20,8 @@ import { selectUser } from "../redux/userSlice";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
 
+import {GoogleLogin, GoogleLogout} from 'react-google-login'
+
 
 export default function LoginIn() {
 	const [email, setEmail] = useState("");
@@ -27,6 +29,25 @@ export default function LoginIn() {
 
 	const [emailError, setEmailError] = useState(false);
 	const [passwordError, setPasswordError] = useState(false);
+
+	const clientId="144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com"
+
+	const [showLoginButton, setShowLoginButton]= useState(true)
+	const [showLogoutButton, setShowLogoutButton] = useState(false)
+
+	const onLoginSuccess = (res)=>{
+		console.log("Login Success", res.profileObj);
+		setShowLoginButton(false)
+		setShowLogoutButton(true)
+	}
+	const onFailureSuccess = (res)=>{
+		console.log("Login Failed", res);
+	}
+
+	const onSignoutSuccess = (res)=>{
+		alert("You haev been signed out successfully")
+		setShowLogoutButton(false)
+	}
 
 
 	const user = useSelector(selectUser);
@@ -38,12 +59,15 @@ export default function LoginIn() {
 		setEmailError(false)
 		setPasswordError(false)
 		
-		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+		
 		if (email == "" ) {
 			setEmailError(true );
 			return Router.push("/login");
 
+			 
 		}
+		
 		if (password == "") {
 			setPasswordError(true);
 			return Router.push("/login");
@@ -61,6 +85,8 @@ export default function LoginIn() {
 			})
 		);
 	};
+
+
 
 	return (
 		<div>
@@ -105,6 +131,7 @@ export default function LoginIn() {
 							</Typography>
 
 							<Button
+						
 								type="submit"
 								fullWidth
 								variant="text"
@@ -127,6 +154,26 @@ export default function LoginIn() {
 								/>
 								Sign up with Google
 							</Button>
+							{showLoginButton ?
+
+						
+							<GoogleLogin
+							
+    							clientId={clientId}
+   							    buttonText="Sign up with Google"
+    							onSuccess={onLoginSuccess}
+    							onFailure={onFailureSuccess}
+  								cookiePolicy={'single_host_origin'}
+ 						    />:null
+							}
+							
+							{showLogoutButton ?
+							  <GoogleLogout
+      							clientId={clientId}
+      							buttonText="Logout"
+      							onLogoutSuccess={onSignoutSuccess}>
+    						  </GoogleLogout>: null}
+						
 
 							<div className={styles.divContainer}>
 								<span className={styles.signupEmail}>

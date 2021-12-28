@@ -20,6 +20,7 @@ import { selectUser } from "../redux/userSlice";
 import SuccessForm from "../components/SuccessForm";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
+import {GoogleLogin, GoogleLogout} from 'react-google-login'
 
 export default function SignUp() {
 	const [name, setName] = useState("");
@@ -29,6 +30,27 @@ export default function SignUp() {
 	const [nameError, setNameError] = useState(false);
 	const [emailError, setEmailError] = useState(false);
 	const [passwordError, setPasswordError] = useState(false);
+
+	
+
+	const [showLoginButton, setShowLoginButton]= useState(true)
+	const [showLogoutButton, setShowLogoutButton] = useState(false)
+
+	const clientId="144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com"
+
+	const onLoginSuccess = (res)=>{
+		console.log("Login Success", res.profileObj);
+		setShowLoginButton(false)
+		setShowLogoutButton(true)
+	}
+	const onFailureSuccess = (res)=>{
+		console.log("Login Failed", res);
+	}
+
+	const onSignoutSuccess = (res)=>{
+		alert("You haev been signed out successfully")
+		setShowLogoutButton(false)
+	}
 
 	const user = useSelector(selectUser);
 
@@ -142,6 +164,25 @@ export default function SignUp() {
 								/>
 								Sign up with Google
 							</Button>
+							{showLoginButton ?
+
+						
+							<GoogleLogin
+
+								clientId={clientId}
+								buttonText="Sign up with Google"
+								onSuccess={onLoginSuccess}
+								onFailure={onFailureSuccess}
+								cookiePolicy={'single_host_origin'}
+							/>:null
+							}
+
+							{showLogoutButton ?
+							<GoogleLogout
+								clientId={clientId}
+								buttonText="Logout"
+								onLogoutSuccess={onSignoutSuccess}>
+							</GoogleLogout>: null}
 
 							<div className={styles.divContainer}>
 								<span className={styles.signupEmail}>
