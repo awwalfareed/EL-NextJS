@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SignUp() {
+export default function Login() {
 
   
   const [email, setEmail] = useState("");
@@ -181,12 +181,12 @@ export default function SignUp() {
 
 		if (email == "") {
 			setEmailError(true);
-			return Router.push("/login");
+			return Router.push("/");
 		}
 
 		if (password == "") {
 			setPasswordError(true);
-			return Router.push("/login");
+			return Router.push("/");
 		}
 
 		dispatch(

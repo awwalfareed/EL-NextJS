@@ -17,11 +17,14 @@ import { useState } from 'react';
 // import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-import Logout from "../components/Logout";
+import SuccessForm from './success';
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
+import {Link as Links} from "next/link"
+
+
 
 
 
@@ -183,17 +186,17 @@ export default function SignUp() {
 
     if (name == "") {
 			setEmailError(true);
-			return Router.push("/login");
+			return Router.push("/signup");
 		}
 
 		if (email == "") {
 			setEmailError(true);
-			return Router.push("/login");
+			return Router.push("/signup");
 		}
 
 		if (password == "") {
 			setPasswordError(true);
-			return Router.push("/login");
+			return Router.push("/signup");
 		}
 
 		dispatch(
@@ -214,7 +217,7 @@ export default function SignUp() {
   return (
     <>
     {user ?(
-      <Logout/>):(
+      <SuccessForm/>):(
     
     <Grid container component="main" className={classes.root} >
       <CssBaseline />
@@ -325,6 +328,7 @@ export default function SignUp() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            
             <Button
               type="submit"
               fullWidth
@@ -334,6 +338,7 @@ export default function SignUp() {
             >
               Sign up
             </Button>
+            
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -342,7 +347,7 @@ export default function SignUp() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Already have an account? Login In"}
                 </Link>
               </Grid>
             </Grid>

@@ -5,11 +5,19 @@ import { makeStyles,  Card, CardActionArea, CardMedia, CardContent, Typography, 
 const useStyles = makeStyles((theme)=>({
 
     card:{
-        marginBottom:theme.spacing(5)
+        marginBottom:theme.spacing(5),
+        width:"80%",
+        marginLeft:100,
+        [theme.breakpoints.down("sm")]:{
+            width:"100%",
+            marginLeft:0,
+        },
+       
     },
 
     media:{
-        height:300,
+        height:400,
+        
         [theme.breakpoints.down("sm")]:{
             height:150,
         },
