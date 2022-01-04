@@ -13,3 +13,11 @@
     padding: 0 10px;
     color: rgb(179, 174, 174);
 }
+
+.gglSign {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 60px;
+}
