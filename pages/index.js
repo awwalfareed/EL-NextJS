@@ -23,7 +23,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
-import Home from "./home";
 
 function Copyright() {
 	return (
