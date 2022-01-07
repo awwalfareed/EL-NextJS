@@ -9,20 +9,18 @@ import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import styles from "../styles/Login.module.css";
+import styles from "../../styles/Login.module.css";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import OfflineBoltIcon from "@material-ui/icons/OfflineBolt";
-import { useState } from "react";
 // import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-import SuccessForm from "./success";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
-import { Link as Links } from "next/link";
+import { useForm } from "../../src/components/useForm";
 
 function Copyright() {
 	return (
@@ -124,15 +122,39 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignUp() {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+const initialValues = {
+	id: 0,
+	name: "",
+	email: "",
+	password: "",
+	isRemember: false,
+};
 
-	const [nameError, setNameError] = useState(false);
-	const [emailError, setEmailError] = useState(false);
-	const [passwordError, setPasswordError] = useState(false);
+export default function SignUp() {
 	const classes = useStyles();
+
+	const validate = (fieldValues = values) => {
+		let temp = { ...errors };
+		if ("name" in fieldValues)
+			temp.name = fieldValues.name ? "" : "This field is required.";
+		if ("email" in fieldValues)
+			temp.email = /$^|.+@.+..+/.test(fieldValues.email)
+				? ""
+				: "Email is not valid.";
+		if ("password" in fieldValues)
+			temp.password =
+				fieldValues.password.length > 6 ? "" : "Minimum 6 numbers required.";
+		setErrors({
+			...temp,
+		});
+		if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+	};
+
+	const { values, setValues, errors, setErrors, handleInputChange } = useForm(
+		initialValues,
+		true,
+		validate
+	);
 
 	// const clientId =
 	// 	"144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com";
@@ -159,25 +181,9 @@ export default function SignUp() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		setNameError(false);
-		setEmailError(false);
-		setPasswordError(false);
-
-		if (name == "") {
-			setNameError(true);
-			return Router.push("/signup");
+		if (validate()) {
+			Router.push("/success");
 		}
-
-		if (email == "") {
-			setEmailError(true);
-			return Router.push("/signup");
-		}
-
-		if (password == "") {
-			setPasswordError(true);
-			return Router.push("/signup");
-		} else Router.push("/success");
 
 		dispatch(
 			login({
@@ -207,11 +213,7 @@ export default function SignUp() {
 					<Typography component="h1" variant="h4" className={classes.SignLeft}>
 						Sign up
 					</Typography>
-					<form
-						className={classes.form}
-						noValidate
-						onSubmit={(e) => handleSubmit(e)}
-					>
+					<form className={classes.form} noValidate onSubmit={handleSubmit}>
 						<CustomButton
 							type="submit"
 							fullWidth
@@ -233,7 +235,6 @@ export default function SignUp() {
 										// cookiePolicy={"single_host_origin"}
 									/>
 								) : null}
-
 								{showLogoutButton ? (
 									<GoogleLogout
 										clientId={clientId}
@@ -257,17 +258,18 @@ export default function SignUp() {
 							autoComplete="name"
 							autoFocus
 							className={classes.TextField}
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							error={nameError}
-							helperText={nameError ? "Name is required" : null}
+							value={values.name}
+							onChange={handleInputChange}
+							error={errors.name}
+							helperText={errors.name}
+							size="normal"
 						/>
 						Email*
 						<TextField
 							hiddenLabel
 							variant="outlined"
 							margin="normal"
-							required
+							required="true"
 							fullWidth
 							id="email"
 							placeholder="Email Address"
@@ -275,10 +277,11 @@ export default function SignUp() {
 							autoComplete="email"
 							autoFocus
 							className={classes.TextField}
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							error={emailError}
-							helperText={emailError ? "Email is required" : null}
+							value={values.email}
+							onChange={handleInputChange}
+							error={errors.email}
+							helperText={errors.email}
+							size="normal"
 						/>
 						Password*
 						<TextField
@@ -293,14 +296,18 @@ export default function SignUp() {
 							id="password"
 							autoComplete="current-password"
 							className={classes.TextField}
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							error={passwordError}
-							helperText={passwordError ? " Password is required" : null}
+							value={values.password}
+							onChange={handleInputChange}
+							error={errors.password}
+							helperText={errors.password}
+							size="normal"
 						/>
 						<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
+							name="isRemember"
+							value={values.isRemember}
+							onChange={handleInputChange}
 						/>
 						<Button
 							type="submit"

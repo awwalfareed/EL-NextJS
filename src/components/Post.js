@@ -9,6 +9,9 @@ import {
 	Button,
 } from "@material-ui/core";
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const useStyles = makeStyles((theme) => ({
 	card: {
 		marginBottom: theme.spacing(5),
@@ -31,32 +34,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Post = () => {
 	const classes = useStyles();
+
+	const [list, setList] = useState([]);
+
+	useEffect(() => {
+		axios({ url: "http://jsonplaceholder.typicode.com/photos" })
+			.then((response) => {
+				setList(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [setList]);
 	return (
 		<Card className={classes.card}>
-			<CardActionArea>
-				<CardMedia
-					className={classes.media}
-					image="https://i.ibb.co/c2dd8DV/pic.jpg"
-					title="My Post"
-				/>
-				<CardContent>
-					<Typography gutterBottom variant="h5">
-						My first post
-					</Typography>
-					<Typography variant="body2">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-						quibusdam iure porro consequatur incidunt excepturi sapiente,
-						corporis distinctio deleniti sed dolores fugiat consectetur, a ab
-						unde id nostrum suscipit possimus.
-					</Typography>
-				</CardContent>
-			</CardActionArea>
+			{list.map((item) => (
+				<CardActionArea>
+					<CardMedia
+						className={classes.media}
+						image={item.url}
+						title="My Post"
+					/>
+					<CardContent>
+						<Typography gutterBottom variant="h5">
+							{item.albumId}
+						</Typography>
+						<Typography variant="body2">{item.title}</Typography>
+					</CardContent>
+				</CardActionArea>
+			))}
 			<CardActions>
 				<Button size="small" color="primary">
 					Share
 				</Button>
 				<Button size="small" color="primary">
-					Read More
+					Learn More
 				</Button>
 			</CardActions>
 		</Card>

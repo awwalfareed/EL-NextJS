@@ -9,20 +9,19 @@ import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import styles from "../styles/Login.module.css";
+import styles from "../../styles/Login.module.css";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import OfflineBoltIcon from "@material-ui/icons/OfflineBolt";
 import { useState } from "react";
-// import { GoogleLogin, GoogleLogout } from "react-google-login";
-
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
-
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { setUserData } from "../redux/userSlice";
 import Router from "next/router";
+import { useForm } from "../components/useForm";
 
 function Copyright() {
 	return (
@@ -124,52 +123,61 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const initialValues = {
+	id: 0,
+	email: "",
+	password: "",
+	isRemember: false,
+};
 export default function Login() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-
-	const [emailError, setEmailError] = useState(false);
-	const [passwordError, setPasswordError] = useState(false);
 	const classes = useStyles();
 
-	//   const clientId =
-	// 	 	"144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com";
+	const validate = (fieldValues = values) => {
+		let temp = { ...errors };
 
-	// 	const [showLoginButton, setShowLoginButton] = useState(true);
-	//  const [showLogoutButton, setShowLogoutButton] = useState(false);
+		if ("email" in fieldValues)
+			temp.email = /$^|.+@.+..+/.test(fieldValues.email)
+				? ""
+				: "Email is not valid.";
+		if ("password" in fieldValues)
+			temp.password =
+				fieldValues.password.length > 6 ? "" : "Minimum 6 numbers required.";
+		setErrors({
+			...temp,
+		});
+		if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+	};
 
-	// 	 const onLoginSuccess = (res) => {
-	// 	 	console.log("Login Success", res.profileObj);
-	// 	 	setShowLoginButton(false);
-	// 	 	setShowLogoutButton(true);
-	// 	 };
-	// 	 const onFailureSuccess = (res) => {
-	// 	 	console.log("Login Failed", res);
-	// 	 };
+	const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
+		useForm(initialValues, true, validate);
+	// const clientId =
+	// 	"144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com";
 
-	// 	 const onSignoutSuccess = (res) => {
-	// 	 	alert("You haev been signed out successfully");
-	// 		setShowLogoutButton(false);
-	//  };
+	// const [showLoginButton, setShowLoginButton] = useState(true);
+	// const [showLogoutButton, setShowLogoutButton] = useState(false);
+
+	// const onLoginSuccess = (res) => {
+	// 	console.log("Login Success", res.profileObj);
+	// 	setShowLoginButton(false);
+	// 	setShowLogoutButton(true);
+	// };
+	// const onFailureSuccess = (res) => {
+	// 	console.log("Login Failed", res);
+	// };
+
+	// const onSignoutSuccess = (res) => {
+	// 	alert("You haev been signed out successfully");
+	// 	setShowLogoutButton(false);
+	// };
 
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		setEmailError(false);
-		setPasswordError(false);
-
-		if (email == "") {
-			setEmailError(true);
-			return Router.push("/");
+		if (validate()) {
+			Router.push("/home");
 		}
-
-		if (password == "") {
-			setPasswordError(true);
-			return Router.push("/");
-		} else Router.push("/home");
 
 		dispatch(
 			login({
@@ -218,32 +226,31 @@ export default function Login() {
 							Sign up with Google
 						</CustomButton>
 						{/* {showLoginButton ? (
-              <div className={classes.signin2}>
-									<GoogleLogin
-										clientId={clientId}
-										buttonText="Sign up with Google"
-										onSuccess={onLoginSuccess}
-										onFailure={onFailureSuccess}
-										cookiePolicy={"single_host_origin"}
-                    
-                    className={classes.gglSign}
-                  
-                    
-									/>
-                  </div>
-								) : null}
-
-								{showLogoutButton ? (
-                  
-									<GoogleLogout
-										clientId={clientId}
-										buttonText="Logout"
-										onLogoutSuccess={onSignoutSuccess}
-                    className={styles.gglSign}
-                    
-									></GoogleLogout>
-                
-								) : null} */}
+							<div className={classes.signin2}>
+								<GoogleLogin
+									render={(renderProps) => (
+										<button
+											onClick={renderProps.onClick}
+											disabled={renderProps.disabled}
+										>
+											This is my custom Google button
+										</button>
+									)}
+									clientId={clientId}
+									onSuccess={onLoginSuccess}
+									onFailure={onFailureSuccess}
+									cookiePolicy={"single_host_origin"}
+								/>
+							</div>
+						) : null}
+						{showLogoutButton ? (
+							<GoogleLogout
+								clientId={clientId}
+								buttonText="Logout"
+								onLogoutSuccess={onSignoutSuccess}
+								className={styles.gglSign}
+							></GoogleLogout>
+						) : null} */}
 						<div className={styles.divContainer}>
 							<span className={styles.signupEmail}>or Sign up with Email</span>
 						</div>
@@ -260,10 +267,10 @@ export default function Login() {
 							autoComplete="email"
 							autoFocus
 							className={classes.TextField}
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							error={emailError}
-							helperText={emailError ? "Email is required" : null}
+							value={values.email}
+							onChange={handleInputChange}
+							error={errors.email}
+							helperText={errors.email}
 						/>
 						Password*
 						<TextField
@@ -278,10 +285,10 @@ export default function Login() {
 							id="password"
 							autoComplete="current-password"
 							className={classes.TextField}
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							error={passwordError}
-							helperText={passwordError ? "Password is required" : null}
+							value={values.password}
+							onChange={handleInputChange}
+							error={errors.password}
+							helperText={errors.password}
 						/>
 						<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
