@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundPosition: "center",
 	},
 	paper: {
-		margin: theme.spacing(8, 4),
+		margin: theme.spacing(8, 2),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
-		padding: "2.5%",
+		padding: "1.8%",
 		borderRadius: 30,
 	},
 
@@ -94,12 +94,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	SignLeft: {
-		marginRight: "56%",
+		marginRight: "55%",
 		fontWeight: 600,
-		marginTop: 10,
+		marginTop: 1,
 		marginBottom: 15,
 		[theme.breakpoints.down("sm")]: {
-			marginRight: "70%",
+			marginRight: "62%",
 			fontSize: 25,
 			marginTop: "0%",
 		},
@@ -110,14 +110,14 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down("sm")]: {
 			marginRight: "75%",
 			marginBottom: "5%",
-			marginTop: "-15%",
+			marginTop: "-10%",
 		},
 	},
 
 	signupGoogle: {
 		"&.MuiButton-text": { color: "black" },
 		border: "1px #d3d3d3 solid",
-		padding: "2.5%",
+		padding: "1.8%",
 		borderRadius: 30,
 	},
 }));
@@ -262,7 +262,11 @@ export default function SignUp() {
 							onChange={handleInputChange}
 							error={errors.name}
 							helperText={errors.name}
-							size="normal"
+							inputProps={{
+								style: {
+									padding: 15,
+								},
+							}}
 						/>
 						Email*
 						<TextField
@@ -281,7 +285,11 @@ export default function SignUp() {
 							onChange={handleInputChange}
 							error={errors.email}
 							helperText={errors.email}
-							size="normal"
+							inputProps={{
+								style: {
+									padding: 15,
+								},
+							}}
 						/>
 						Password*
 						<TextField
@@ -300,7 +308,11 @@ export default function SignUp() {
 							onChange={handleInputChange}
 							error={errors.password}
 							helperText={errors.password}
-							size="normal"
+							inputProps={{
+								style: {
+									padding: 15,
+								},
+							}}
 						/>
 						<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}

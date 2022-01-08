@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
 	toolbar: {
 		display: "flex",
 		justifyContent: "space-between",
+		minHeight: 80,
+		[theme.breakpoints.down("sm")]: {
+			minHeight: 55,
+		},
 	},
 	logoLg: {
 		display: "none",
@@ -48,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 	input: {
 		color: "white",
 		marginLeft: theme.spacing(1),
+		width: "100%",
 	},
 
 	cancel: {

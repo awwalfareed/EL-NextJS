@@ -11,10 +11,7 @@ import {
 	Storefront,
 	TabletMac,
 } from "@material-ui/icons";
-import Link from "next/link";
-
 import React from "react";
-import Button from "@material-ui/core/Button";
 import { logout, selectUser, selectUserData } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -24,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		height: "100vh",
 		color: "white",
-		paddingTop: theme.spacing(10),
+		paddingTop: theme.spacing(15),
 		backgroundColor: theme.palette.primary.main,
 		position: "sticky",
 		top: 0,

@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundPosition: "center",
 	},
 	paper: {
-		margin: theme.spacing(8, 4),
+		margin: theme.spacing(8, 2),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -76,14 +76,28 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 		[theme.breakpoints.down("sm")]: {
 			width: "100%",
+			padding: 2,
 		},
 	},
 	TextField: {
 		[`& fieldset`]: { borderRadius: 30 },
+		[theme.breakpoints.down("sm")]: {
+			inputProps: {
+				[theme.breakpoints.down("sm")]: {
+					padding: 40,
+				},
+			},
+		},
+	},
+
+	inputProps: {
+		[theme.breakpoints.down("sm")]: {
+			padding: 40,
+		},
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
-		padding: "2.5%",
+		padding: "1.8%",
 		borderRadius: 30,
 	},
 
@@ -118,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
 	signupGoogle: {
 		"&.MuiButton-text": { color: "black" },
 		border: "1px #d3d3d3 solid",
-		padding: "2.5%",
+		padding: "1.8%",
 		borderRadius: 30,
 	},
 }));
@@ -129,7 +143,7 @@ const initialValues = {
 	password: "",
 	isRemember: false,
 };
-export default function Login() {
+export default function Login(props) {
 	const classes = useStyles();
 
 	const validate = (fieldValues = values) => {
@@ -271,6 +285,11 @@ export default function Login() {
 							onChange={handleInputChange}
 							error={errors.email}
 							helperText={errors.email}
+							inputProps={{
+								style: {
+									padding: 15,
+								},
+							}}
 						/>
 						Password*
 						<TextField
@@ -289,6 +308,12 @@ export default function Login() {
 							onChange={handleInputChange}
 							error={errors.password}
 							helperText={errors.password}
+							size="normal"
+							inputProps={{
+								style: {
+									padding: 15,
+								},
+							}}
 						/>
 						<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
