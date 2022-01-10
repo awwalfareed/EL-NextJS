@@ -19,7 +19,7 @@ import Router from "next/router";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		height: "100vh",
+		height: "90vh",
 		color: "white",
 		paddingTop: theme.spacing(15),
 		backgroundColor: theme.palette.primary.main,

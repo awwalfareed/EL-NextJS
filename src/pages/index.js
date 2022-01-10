@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundPosition: "center",
 	},
 	paper: {
-		margin: theme.spacing(8, 2),
+		margin: theme.spacing(8, 1),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -99,6 +99,9 @@ const useStyles = makeStyles((theme) => ({
 		margin: theme.spacing(3, 0, 2),
 		padding: "1.8%",
 		borderRadius: 30,
+		[theme.breakpoints.down("sm")]: {
+			padding: "2.5%",
+		},
 	},
 
 	logoGoogle: {
@@ -134,6 +137,9 @@ const useStyles = makeStyles((theme) => ({
 		border: "1px #d3d3d3 solid",
 		padding: "1.8%",
 		borderRadius: 30,
+		[theme.breakpoints.down("sm")]: {
+			padding: "2.5%",
+		},
 	},
 }));
 
