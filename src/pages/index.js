@@ -147,7 +147,7 @@ const initialValues = {
 	id: 0,
 	email: "",
 	password: "",
-	isRemember: false,
+	//isRemember: false,
 };
 export default function Login(props) {
 	const classes = useStyles();
@@ -168,8 +168,11 @@ export default function Login(props) {
 		if (fieldValues == values) return Object.values(temp).every((x) => x == "");
 	};
 
-	const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-		useForm(initialValues, true, validate);
+	const { values, setValues, errors, setErrors, handleInputChange } = useForm(
+		initialValues,
+		true,
+		validate
+	);
 	// const clientId =
 	// 	"144873523041-hg41dvgqatds7e0qbs02m0k9kj0k2g51.apps.googleusercontent.com";
 
@@ -289,7 +292,7 @@ export default function Login(props) {
 							className={classes.TextField}
 							value={values.email}
 							onChange={handleInputChange}
-							error={errors.email}
+							error={!!errors.email}
 							helperText={errors.email}
 							inputProps={{
 								style: {
@@ -312,9 +315,8 @@ export default function Login(props) {
 							className={classes.TextField}
 							value={values.password}
 							onChange={handleInputChange}
-							error={errors.password}
+							error={!!errors.password}
 							helperText={errors.password}
-							size="normal"
 							inputProps={{
 								style: {
 									padding: 15,

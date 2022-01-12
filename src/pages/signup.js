@@ -257,7 +257,6 @@ export default function SignUp() {
 							placeholder="Name"
 							variant="outlined"
 							margin="normal"
-							required
 							fullWidth
 							id="name"
 							name="name"
@@ -266,7 +265,7 @@ export default function SignUp() {
 							className={classes.TextField}
 							value={values.name}
 							onChange={handleInputChange}
-							error={errors.name}
+							error={!!errors.name}
 							helperText={errors.name}
 							inputProps={{
 								style: {
@@ -279,7 +278,6 @@ export default function SignUp() {
 							hiddenLabel
 							variant="outlined"
 							margin="normal"
-							required="true"
 							fullWidth
 							id="email"
 							placeholder="Email Address"
@@ -289,7 +287,7 @@ export default function SignUp() {
 							className={classes.TextField}
 							value={values.email}
 							onChange={handleInputChange}
-							error={errors.email}
+							error={!!errors.email}
 							helperText={errors.email}
 							inputProps={{
 								style: {
@@ -302,7 +300,6 @@ export default function SignUp() {
 							hiddenLabel
 							variant="outlined"
 							margin="normal"
-							required
 							fullWidth
 							name="password"
 							placeholder="Password"
@@ -312,7 +309,7 @@ export default function SignUp() {
 							className={classes.TextField}
 							value={values.password}
 							onChange={handleInputChange}
-							error={errors.password}
+							error={!!errors.password}
 							helperText={errors.password}
 							inputProps={{
 								style: {

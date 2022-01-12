@@ -7,9 +7,8 @@ import {
 	Typography,
 	CardActions,
 	Button,
-	Grid,
 } from "@material-ui/core";
-
+import ShareForm from "./ShareForm";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -66,7 +65,7 @@ const Post = () => {
 		<>
 			<Card className={classes.card}>
 				{SliceItem.map((item) => (
-					<CardActionArea>
+					<CardActionArea key={item.id}>
 						<CardMedia
 							className={classes.media}
 							image={item.url}
@@ -81,9 +80,7 @@ const Post = () => {
 					</CardActionArea>
 				))}
 				<CardActions>
-					<Button size="small" color="primary">
-						Share
-					</Button>
+					<ShareForm />
 					<Button size="small" color="primary">
 						Learn More
 					</Button>
