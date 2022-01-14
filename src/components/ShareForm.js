@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		[theme.breakpoints.down("sm")]: {
 			width: "80%",
-			height: "60%",
+			height: "55%",
 		},
 	},
 	form: {
@@ -110,9 +110,7 @@ const TextEditor = () => {
 	return (
 		<>
 			<Tooltip title="Add" aria-label="add" onClick={() => setOpen(true)}>
-				<Button color="primary">
-					<Share />
-				</Button>
+				<Button color="primary">Share</Button>
 			</Tooltip>
 			<Modal open={open}>
 				<Container className={classes.container}>

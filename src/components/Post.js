@@ -1,103 +1,109 @@
-import {
-	makeStyles,
-	Card,
-	CardActionArea,
-	CardMedia,
-	CardContent,
-	Typography,
-	CardActions,
-	Button,
-} from "@material-ui/core";
-import ShareForm from "./ShareForm";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import { MoreHoriz, ThumbUpAlt } from "@material-ui/icons";
+import { Users } from "../../data";
 
 const useStyles = makeStyles((theme) => ({
-	loadButton: {
-		width: "40%",
-		marginLeft: "30%",
-		[theme.breakpoints.down("sm")]: {
-			width: "80%",
-			marginLeft: "10%",
-		},
+	root: {
+		maxWidth: "70%",
+		marginLeft: "12%",
 	},
-	card: {
-		marginBottom: theme.spacing(5),
+	shareInput: {
+		width: "70%",
+		marginLeft: "12%",
+		borderRadius: "6",
+
+		marginBottom: "5%",
+	},
+
+	input: {
+		[`& fieldset`]: { borderRadius: 30 },
 		width: "80%",
-		marginLeft: 100,
-		[theme.breakpoints.down("sm")]: {
-			width: "100%",
-			marginLeft: 0,
-		},
+		marginLeft: "10%",
+		marginBottom: "2%",
+	},
+
+	icons: {
+		marginLeft: "15%",
 	},
 
 	media: {
-		height: 400,
-
-		[theme.breakpoints.down("sm")]: {
-			height: 150,
-		},
+		height: 0,
+		paddingTop: "56.25%", // 16:9
+	},
+	expand: {
+		transform: "rotate(0deg)",
+		marginLeft: "auto",
+		transition: theme.transitions.create("transform", {
+			duration: theme.transitions.duration.shortest,
+		}),
+	},
+	expandOpen: {
+		transform: "rotate(180deg)",
+	},
+	avatar: {
+		backgroundColor: red[500],
 	},
 }));
 
-const Post = () => {
+export default function Post({ post }) {
 	const classes = useStyles();
 
-	const [list, setList] = useState([]);
-	const [items, setItems] = useState(4);
-
-	const SliceItem = list.slice(0, items);
-
-	const loadMore = () => {
-		setItems(items + 4);
-	};
-
-	useEffect(() => {
-		axios({ url: "http://jsonplaceholder.typicode.com/photos" })
-			.then((response) => {
-				setList(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}, [setList]);
 	return (
 		<>
-			<Card className={classes.card}>
-				{SliceItem.map((item) => (
-					<CardActionArea key={item.id}>
-						<CardMedia
-							className={classes.media}
-							image={item.url}
-							title="My Post"
+			<Card className={classes.root}>
+				<CardHeader
+					avatar={
+						<Avatar
+							aria-label="recipe"
+							className={classes.avatar}
+							src={Users.filter((u) => u.id === post.userId)[0].profilePicture}
 						/>
-						<CardContent>
-							<Typography gutterBottom variant="h5">
-								{item.albumId}
-							</Typography>
-							<Typography variant="body2">{item.title}</Typography>
-						</CardContent>
-					</CardActionArea>
-				))}
-				<CardActions>
-					<ShareForm />
-					<Button size="small" color="primary">
-						Learn More
-					</Button>
+					}
+					action={
+						<IconButton aria-label="settings">
+							<MoreHoriz />
+						</IconButton>
+					}
+					title={Users.filter((u) => u.id === post.userId)[0].username}
+					subheader={post.date}
+				/>
+				<CardContent>
+					<Typography paragraph>{post?.desc}</Typography>
+				</CardContent>
+				<CardMedia
+					className={classes.media}
+					image={post.photo}
+					title="Paella dish"
+				/>
+
+				<CardActions disableSpacing>
+					<IconButton aria-label="add to favorites">
+						<ThumbUpAlt style={{ color: "primary" }} />
+					</IconButton>
+					<IconButton aria-label="add to favorites">
+						<FavoriteIcon style={{ color: "tomato" }} />
+					</IconButton>
+					{post.like}
+					<IconButton aria-label="share">
+						<ShareIcon />
+					</IconButton>
+					<span style={{ marginLeft: "55%" }}>{post.comment}Comments</span>
 				</CardActions>
 			</Card>
-
-			<Button
-				variant="contained"
-				color="primary"
-				href="#contained-buttons"
-				onClick={() => loadMore()}
-				className={classes.loadButton}
-			>
-				Load more
-			</Button>
 		</>
 	);
-};
-
-export default Post;
+}

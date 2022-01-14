@@ -1,5 +1,6 @@
 import {
 	makeStyles,
+	withStyles,
 	Container,
 	Typography,
 	Link,
@@ -8,7 +9,17 @@ import {
 	ImageListItem,
 	Divider,
 } from "@material-ui/core";
-import { AvatarGroup } from "@material-ui/lab";
+
+import { Users } from "../../data";
+import Online from "./Online";
+
+const SmallAvatar = withStyles((theme) => ({
+	root: {
+		width: 22,
+		height: 22,
+		border: `2px solid ${theme.palette.background.paper}`,
+	},
+}))(Avatar);
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -31,19 +42,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Rightbar = () => {
 	const classes = useStyles();
+
 	return (
 		<Container className={classes.container}>
 			<Typography className={classes.title} gutterBottom>
 				Online Friends
 			</Typography>
+			{Users.map((u) => (
+				<Online key={u.id} user={u} />
+			))}
 
-			<AvatarGroup max={4} style={{ marginBottom: 20 }}>
-				<Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-				<Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-				<Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-				<Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-				<Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg" />
-			</AvatarGroup>
 			<Typography className={classes.title} gutterBottom>
 				Galleries
 			</Typography>
@@ -64,12 +72,6 @@ const Rightbar = () => {
 				</ImageListItem>
 				<ImageListItem>
 					<img src="https://v4.mui.com/static/images/image-list/breakfast.jpg" />
-				</ImageListItem>
-				<ImageListItem>
-					<img src="https://v4.mui.com/static/images/image-list/morning.jpg" />
-				</ImageListItem>
-				<ImageListItem>
-					<img src="https://v4.mui.com/static/images/image-list/morning.jpg" />
 				</ImageListItem>
 			</ImageList>
 			<Typography className={classes.title} gutterBottom>
