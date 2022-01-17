@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
+
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -15,6 +15,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import { MoreHoriz, ThumbUpAlt } from "@material-ui/icons";
 import { Users } from "../../data";
+import { useState } from "react";
+import { Grid } from "@material-ui/core";
+import Image from "next/image";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -54,12 +57,21 @@ const useStyles = makeStyles((theme) => ({
 	expandOpen: {
 		transform: "rotate(180deg)",
 	},
-	avatar: {
-		backgroundColor: red[500],
+	avatarLarge: {
+		width: theme.spacing(7),
+		height: theme.spacing(7),
 	},
 }));
 
 export default function Post({ post }) {
+	const [like, setLike] = useState(post.like);
+	const [isLiked, setIsLiked] = useState(false);
+
+	const likeHandler = () => {
+		setLike(isLiked ? like - 1 : like + 1);
+		setIsLiked(!isLiked);
+	};
+
 	const classes = useStyles();
 
 	return (
@@ -69,7 +81,7 @@ export default function Post({ post }) {
 					avatar={
 						<Avatar
 							aria-label="recipe"
-							className={classes.avatar}
+							className={classes.avatarLarge}
 							src={Users.filter((u) => u.id === post.userId)[0].profilePicture}
 						/>
 					}
@@ -92,12 +104,12 @@ export default function Post({ post }) {
 
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites">
-						<ThumbUpAlt style={{ color: "primary" }} />
+						<ThumbUpAlt style={{ color: "primary" }} onClick={likeHandler} />
 					</IconButton>
 					<IconButton aria-label="add to favorites">
-						<FavoriteIcon style={{ color: "tomato" }} />
+						<FavoriteIcon style={{ color: "tomato" }} onClick={likeHandler} />
 					</IconButton>
-					{post.like}
+					{like}
 					<IconButton aria-label="share">
 						<ShareIcon />
 					</IconButton>

@@ -9,6 +9,12 @@ import {
 	ImageListItem,
 	Divider,
 } from "@material-ui/core";
+import {
+	Business,
+	CastForEducation,
+	LocationOff,
+	LocationOn,
+} from "@material-ui/icons";
 
 import { Users } from "../../data";
 import Online from "./Online";
@@ -40,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Rightbar = () => {
+const Rightbar = ({ profile }) => {
 	const classes = useStyles();
 
 	return (

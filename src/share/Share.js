@@ -19,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "70%",
 		marginLeft: "12%",
 	},
+
+	small: {
+		width: theme.spacing(5),
+		height: theme.spacing(5),
+		marginBottom: theme.spacing(-5),
+		marginTop: "4%",
+		marginLeft: "3%",
+	},
 	shareInput: {
 		width: "70%",
 		marginLeft: "12%",
@@ -59,7 +67,7 @@ const Share = () => {
 	return (
 		<div>
 			<Card className={classes.shareInput}>
-				<Avatar />
+				<Avatar src="/assets/person/1.jpeg" className={classes.small} />
 				<TextField
 					id="outlined-basic"
 					label="Outlined"
