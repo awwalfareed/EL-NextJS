@@ -19,7 +19,7 @@ const Home = () => {
 				<Grid item sm={2} xs={2}>
 					<Leftbar />
 				</Grid>
-				<Grid item sm={7} xs={10}>
+				<Grid item sm={7} xs={10} style={{ marginTop: "5%" }}>
 					<Feed />
 				</Grid>
 				<Grid item sm={3} className={classes.right}>

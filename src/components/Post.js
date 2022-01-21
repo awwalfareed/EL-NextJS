@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		maxWidth: "70%",
 		marginLeft: "12%",
+		marginTop: 20,
 	},
 	shareInput: {
 		width: "70%",
