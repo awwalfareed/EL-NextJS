@@ -1,5 +1,5 @@
 import { withStyles, Avatar } from "@material-ui/core";
-import Badge from "@material-ui/core/Badge";
+import { Badge } from "@material-ui/core";
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -30,22 +30,4 @@ const StyledBadge = withStyles((theme) => ({
 	},
 }))(Badge);
 
-const Online = ({ user }) => {
-	return (
-		<div>
-			<StyledBadge
-				overlap="circular"
-				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "right",
-				}}
-				variant="dot"
-			>
-				<Avatar alt="" src={user.profilePicture} style={{ margin: 5 }} />
-			</StyledBadge>
-			<span> {user.username}</span>
-		</div>
-	);
-};
-
-export default Online;
+export { StyledBadge };

@@ -16,54 +16,14 @@ import FormatItalicIcon from "@material-ui/icons/FormatItalic";
 import FormatUnderlinedIcon from "@material-ui/icons/FormatUnderlined";
 import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import MuiAlert from "@material-ui/lab/Alert";
 import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { FormatListNumbered, Share } from "@material-ui/icons";
-
-const useStyles = makeStyles((theme) => ({
-	container: {
-		width: "60%",
-		height: 600,
-		backgroundColor: "white",
-		position: "absolute",
-		top: 0,
-		bottom: 0,
-		left: 0,
-		right: 0,
-		margin: "auto",
-		[theme.breakpoints.down("sm")]: {
-			width: "80%",
-			height: "55%",
-		},
-	},
-	form: {
-		padding: theme.spacing(0),
-	},
-
-	buttonShare: {
-		[theme.breakpoints.down("sm")]: {
-			marginTop: "-2%",
-		},
-	},
-
-	paper: {
-		display: "flex",
-		border: `1px solid ${theme.palette.divider}`,
-		flexWrap: "wrap",
-		marginTop: "5%",
-	},
-	divider: {
-		margin: theme.spacing(1, 0.5),
-	},
-
-	item: {
-		marginBottom: theme.spacing(3),
-	},
-}));
+import { FormatListNumbered } from "@material-ui/icons";
+import { useStyles } from "./ShareFormStyles.js";
 
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;

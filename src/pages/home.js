@@ -1,8 +1,9 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import Navbar from "../components/Navbar";
-import Feed from "../components/Feed";
-import Leftbar from "../components/Leftbar";
-import Rightbar from "../components/Rightbar";
+import Navbar from "../components/Navbar/Navbar";
+import Feed from "../components/Feeds/Feed";
+import Leftbar from "../components/Leftbar/Leftbar";
+import Rightbar from "../components/Rightbar/Rightbar";
+import Share from "../components/share/Share";
 
 const useStyles = makeStyles((theme) => ({
 	[theme.breakpoints.down("sm")]: {
@@ -20,6 +21,7 @@ const Home = () => {
 					<Leftbar />
 				</Grid>
 				<Grid item sm={7} xs={10} style={{ marginTop: "5%" }}>
+					<Share />
 					<Feed />
 				</Grid>
 				<Grid item sm={3} className={classes.right}>

@@ -1,53 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
+import { useStyles } from "./ReviewStyles.js";
 import Paper from "@material-ui/core/Paper";
 import { Avatar, CardContent, CardHeader, Typography } from "@material-ui/core";
-
 import { useState } from "react";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import ShowMoreText from "react-show-more-text";
-
-const useStyles = makeStyles((theme) => ({
-	text: {
-		marginTop: -30,
-		fontSize: 13,
-	},
-
-	fullText: {
-		marginTop: "-5%",
-	},
-
-	PaperMargin: {
-		marginBottom: 10,
-		width: "95%",
-		marginLeft: 8,
-	},
-	root: {
-		display: "flex",
-		flexWrap: "wrap",
-
-		"& > *": {
-			marginTop: theme.spacing(-1),
-			width: theme.spacing(37),
-			height: theme.spacing(30),
-		},
-	},
-
-	nick: {
-		fontSize: 13,
-		color: "blue",
-		marginRight: 18,
-	},
-
-	job: {
-		fontSize: 13,
-		color: "gray",
-	},
-	username: {
-		fontWeight: 600,
-	},
-}));
 
 const Review = ({ user }) => {
 	const [expand, setExpand] = useState(false);
