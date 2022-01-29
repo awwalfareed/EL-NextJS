@@ -22,8 +22,18 @@ const Introduction = () => {
 	const classes = useStyles();
 	return (
 		<>
-			<Paper className={classes.root}>
+			<Paper className={classes.root} elevation={0}>
 				<div className={classes.introMargin}>
+					<Typography
+						style={{
+							marginLeft: 20,
+							marginTop: 10,
+							fontWeight: 600,
+							fontSize: 20,
+						}}
+					>
+						Introduction
+					</Typography>
 					<Typography style={{ color: "gray", fontSize: 14 }}>
 						<Business style={{ marginRight: 10 }} />
 						Current Company

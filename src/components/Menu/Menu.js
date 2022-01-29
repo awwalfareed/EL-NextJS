@@ -2,12 +2,13 @@ import { Box } from "@material-ui/core";
 import { useStyles } from "./MenuStyles.js";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+const defaultProps = {};
 const Menu = () => {
 	const classes = useStyles();
 	return (
 		<>
 			<CssBaseline />
-			<Box className={classes.boxLg}>
+			<Box className={classes.boxLg} {...defaultProps} border={0}>
 				<Box order={1} p={1} m={1}>
 					Home
 				</Box>

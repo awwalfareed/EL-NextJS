@@ -10,7 +10,7 @@ export default function ComplexGrid() {
 
 	return (
 		<div className={classes.root}>
-			<Paper className={classes.paper}>
+			<Paper className={classes.paper} elevation={0}>
 				<Grid container spacing={2}>
 					<Grid item>
 						<Avatar src="/assets/person/1.jpeg" className={classes.small} />

@@ -15,7 +15,7 @@ const Review = ({ user }) => {
 
 	const classes = useStyles();
 	return (
-		<Paper className={classes.PaperMargin}>
+		<Paper className={classes.PaperMargin} elevation={0}>
 			<CardHeader
 				avatar={<Avatar alt="" src={user.profilePicture} />}
 				title={
@@ -34,7 +34,7 @@ const Review = ({ user }) => {
 				color="primary"
 				className={classes.ButtonRequest}
 			>
-				Send request
+				Send requestdd
 			</Button>
 		</Paper>
 	);

@@ -6,23 +6,11 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 13,
 	},
 
-	fullText: {
-		marginTop: "-5%",
-	},
-
 	PaperMargin: {
-		marginBottom: 10,
-		[theme.breakpoints.down("md")]: {},
-	},
-	root: {
-		display: "flex",
-		flexWrap: "wrap",
+		marginBottom: 25,
+		marginTop: -15,
 
-		"& > *": {
-			marginTop: theme.spacing(-1),
-			width: theme.spacing(37),
-			height: theme.spacing(30),
-		},
+		[theme.breakpoints.down("md")]: {},
 	},
 
 	nick: {

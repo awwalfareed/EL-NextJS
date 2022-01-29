@@ -13,6 +13,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import { ThumbUpAlt } from "@material-ui/icons";
 import { Users } from "../../../data";
 import { useState } from "react";
+import { Paper } from "@material-ui/core";
 
 export default function Post({ post }) {
 	const [like, setLike] = useState(post.like);
@@ -27,7 +28,7 @@ export default function Post({ post }) {
 
 	return (
 		<>
-			<Card className={classes.root}>
+			<Paper className={classes.root} elevation={0}>
 				<CardHeader
 					avatar={
 						<Avatar
@@ -63,7 +64,7 @@ export default function Post({ post }) {
 					</IconButton>
 					<span className={classes.comment}>{post.comment}Comments</span>
 				</CardActions>
-			</Card>
+			</Paper>
 		</>
 	);
 }

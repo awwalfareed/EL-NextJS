@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",
 		flexWrap: "wrap",
-		marginTop: 10,
+		marginTop: "-5%",
 		"& > *": {
 			marginTop: theme.spacing(-1),
 			width: theme.spacing(37),
-			height: theme.spacing(50),
+			height: theme.spacing(54),
 			[theme.breakpoints.down("md")]: {
 				height: theme.spacing(55),
 				width: theme.spacing(37),
@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 	social: {
 		marginLeft: "12%",
-		marginBottom: "2%",
 		marginTop: "5%",
 		[theme.breakpoints.down("md")]: {
 			marginLeft: "7%",
