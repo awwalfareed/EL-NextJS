@@ -111,14 +111,22 @@ export default function FullWidthGrid() {
 					<Grid container spacing={3} className={classes.fullConatinerSm}>
 						<Grid item xs={3}>
 							<Introduction />
-							<Typography
-								style={{ marginLeft: 20, fontWeight: 600, fontSize: 20 }}
-							>
-								People You may know
-							</Typography>
-							{Users.map((u) => (
-								<Suggestions key={u.id} user={u} />
-							))}
+							<Paper elevation={0}>
+								<Typography
+									style={{
+										marginLeft: 20,
+										marginTop: 10,
+										marginBottom: 8,
+										fontWeight: 600,
+										fontSize: 20,
+									}}
+								>
+									People you may know
+								</Typography>
+								{Users.map((u) => (
+									<Suggestions key={u.id} user={u} />
+								))}
+							</Paper>
 						</Grid>
 
 						<Grid item xs={6}>

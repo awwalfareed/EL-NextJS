@@ -3,45 +3,65 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
 	PaperMargin: {
 		marginBottom: 10,
+		borderRadius: 20,
+		width: "65%",
+		marginLeft: "18%",
 	},
-	root: {
-		display: "flex",
-		flexWrap: "wrap",
 
-		"& > *": {
-			marginTop: theme.spacing(-1),
-			width: theme.spacing(37),
-			height: theme.spacing(30),
-		},
+	infos: { marginLeft: "32%", marginTop: "-13%" },
+
+	avatar: {
+		marginTop: "-10%",
+		marginLeft: "10%",
+		borderRadius: "50%",
 	},
 
 	ButtonRequest: {
 		fontSize: 10,
-		marginLeft: "55%",
-		marginBottom: 10,
-		marginTop: -12,
+		width: "100%",
+		marginTop: 10,
+		borderRadius: "0px 0px 15px 15px",
 	},
 
 	nick: {
-		fontSize: 13,
+		fontSize: 10,
 		color: "blue",
-		marginRight: 18,
+		marginTop: -3,
 	},
 
 	job: {
-		fontSize: 13,
-		color: "gray",
+		fontSize: 10,
+		fontWeight: 600,
+		marginLeft: "5%",
 	},
 
 	username: {
 		fontWeight: 600,
+		fontSize: 11,
 	},
 	intro: {
-		fontSize: 13,
-		marginTop: "-10%",
+		fontSize: 10,
+		marginLeft: 9,
 	},
-	fullsuggestion: {
-		marginTop: -0,
+
+	headerImage: {
+		borderRadius: "10px",
+	},
+
+	divImage: {
+		marginLeft: "2.5%",
+	},
+
+	boldNum: {
+		fontSize: 10,
+		fontWeight: 700,
+		marginLeft: "5%",
+	},
+	follower: {
+		fontSize: 10,
+		fontWeight: 700,
+		color: "gray",
+		marginRight: "8%",
 	},
 }));
 
