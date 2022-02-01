@@ -19,6 +19,10 @@ import { useStyles } from "./ProfileStyles.js";
 export default function FullWidthGrid() {
 	const [showMore, setShowMore] = useState(false);
 	const numberOfItems = showMore ? Users.length : 3;
+
+	const [showReview, setShowReview] = useState(false);
+	const numberOfReviews = showReview ? Users.length : 3;
+
 	const classes = useStyles();
 
 	return (
@@ -186,16 +190,16 @@ export default function FullWidthGrid() {
 									5 Reviews
 								</Typography>
 								<Paper elevation={0}>
-									{Users.slice(0, numberOfItems).map((u) => (
+									{Users.slice(0, numberOfReviews).map((u) => (
 										<Review key={u.id} user={u} />
 									))}
 									<Button
 										variant="outlined"
 										color="primary"
-										onClick={() => setShowMore(!showMore)}
+										onClick={() => setShowReview(!showReview)}
 										className={classes.reviewButton}
 									>
-										{showMore ? "View Less" : "View All"}
+										{showReview ? "View Less" : "View All"}
 									</Button>
 								</Paper>
 							</Paper>
