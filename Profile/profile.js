@@ -1,24 +1,21 @@
-import { useState } from "react";
+import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import Navbar from "../Navbar/Navbar";
-import Feed from "../Feeds/Feed";
+import Navbar from "../src/components/Navbar/Navbar";
+import Feed from "../src/components/Feeds/Feed";
 import { Avatar, Typography, Button, Box } from "@material-ui/core";
 import Image from "next/image";
 import { Sms } from "@material-ui/icons";
-import Introduction from "../introduction/Introduction";
-import Menu from "../Menu/Menu";
-import Review from "../Review/Review";
-import Suggestions from "../Suggestions/Suggestions";
-import { Users } from "../../../data";
-import Share from "../share/Share";
+import Introduction from "../src/components/introduction/Introduction";
+import Menu from "../src/components/Menu/Menu";
+import Review from "../src/components/Review/Review";
+import Suggestions from "../src/components/Suggestions/Suggestions";
+import { Users } from "../data";
+import Share from "../src/components/share/Share";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { useStyles } from "./ProfileStyles.js";
 
 export default function FullWidthGrid() {
-	const [showMore, setShowMore] = useState(false);
-	const numberOfItems = showMore ? Users.length : 3;
 	const classes = useStyles();
 
 	return (
@@ -113,30 +110,14 @@ export default function FullWidthGrid() {
 					<Grid container spacing={3} className={classes.fullConatinerSm}>
 						<Grid item xs={3}>
 							<Introduction />
-							<Paper elevation={0}>
-								<Typography
-									style={{
-										marginLeft: 20,
-										marginTop: 10,
-										marginBottom: 8,
-										fontWeight: 600,
-										fontSize: 20,
-									}}
-								>
-									People you may know
-								</Typography>
-								{Users.slice(0, numberOfItems).map((u) => (
-									<Suggestions key={u.id} user={u} />
-								))}
-								<Button
-									variant="outlined"
-									color="primary"
-									onClick={() => setShowMore(!showMore)}
-									className={classes.viewButton}
-								>
-									{showMore ? "View Less" : "View All"}
-								</Button>
-							</Paper>
+							<Typography
+								style={{ marginLeft: 20, fontWeight: 600, fontSize: 20 }}
+							>
+								People You may know
+							</Typography>
+							{Users.map((u) => (
+								<Suggestions key={u.id} user={u} />
+							))}
 						</Grid>
 
 						<Grid item xs={6}>
@@ -186,17 +167,9 @@ export default function FullWidthGrid() {
 									5 Reviews
 								</Typography>
 								<Paper elevation={0}>
-									{Users.slice(0, numberOfItems).map((u) => (
+									{Users.map((u) => (
 										<Review key={u.id} user={u} />
 									))}
-									<Button
-										variant="outlined"
-										color="primary"
-										onClick={() => setShowMore(!showMore)}
-										className={classes.reviewButton}
-									>
-										{showMore ? "View Less" : "View All"}
-									</Button>
 								</Paper>
 							</Paper>
 						</Grid>

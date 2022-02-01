@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	fullName: {
-		fontSize: 32,
+		fontSize: 28,
 		fontWeight: 600,
 		[theme.breakpoints.down("sm")]: {
 			fontSize: 16,
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	post: {
-		fontSize: 20,
+		fontSize: 18,
 		color: "gray",
 		[theme.breakpoints.down("sm")]: {
 			fontSize: 12,
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	interest: {
-		fontSize: 22,
+		fontSize: 20,
 		fontWeight: 500,
 
 		[theme.breakpoints.down("sm")]: {
@@ -169,6 +169,21 @@ const useStyles = makeStyles((theme) => ({
 
 	feed: {
 		marginTop: "3%",
+	},
+	viewButton: {
+		fontSize: 11,
+		padding: 2,
+		marginLeft: "38%",
+		marginBottom: 10,
+		textTransform: "none",
+	},
+	reviewButton: {
+		fontSize: 11,
+		padding: 2,
+		marginLeft: "38%",
+
+		marginBottom: 10,
+		textTransform: "none",
 	},
 }));
 

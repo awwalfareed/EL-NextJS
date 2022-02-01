@@ -18,16 +18,17 @@ const Review = ({ user }) => {
 	const classes = useStyles();
 	return (
 		<>
-			<Paper className={classes.PaperMargin}>
+			<Paper className={classes.PaperMargin} variant="outlined">
 				<CardHeader
-					avatar={<Avatar alt="" src={user.profilePicture} />}
-					className={classes.avatarMargin}
+					avatar={
+						<div className={classes.avatarMargin}>
+							<Avatar alt="" src={user.profilePicture} />
+						</div>
+					}
 					title={
 						<div className={classes.fullText}>
-							<div className={classes.username} style={{ marginTop: 10 }}>
-								{user.username}
-							</div>
-							<span className={classes.nick}>{user.nick}</span>
+							<div className={classes.username}>{user.username}</div>
+							<div className={classes.nick}>{user.nick}</div>
 							<div className={classes.job}>{user.job}</div>
 						</div>
 					}
@@ -48,9 +49,7 @@ const Review = ({ user }) => {
 						{text}
 					</ShowMoreText>
 				</CardContent>
-				<span style={{ fontSize: 10, marginLeft: "70%" }}>
-					January 29, 2022
-				</span>
+				<div style={{ fontSize: 10, marginLeft: "70%" }}>January 29, 2022</div>
 			</Paper>
 		</>
 	);
