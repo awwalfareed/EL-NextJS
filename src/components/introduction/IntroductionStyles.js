@@ -7,11 +7,13 @@ const useStyles = makeStyles((theme) => ({
 
 	introMargin: {
 		marginLeft: "5%",
+		position: "sticky",
 	},
 	root: {
 		display: "flex",
 		flexWrap: "wrap",
 		marginTop: "-5%",
+		position: "sticky",
 		"& > *": {
 			marginTop: theme.spacing(-1),
 			width: theme.spacing(37),

@@ -8,6 +8,7 @@ import {
 	ImageList,
 	ImageListItem,
 	Divider,
+	Paper,
 } from "@material-ui/core";
 import { useStyles } from "./RightbarStyles.js";
 import {
@@ -24,7 +25,7 @@ const Rightbar = ({ profile }) => {
 	const classes = useStyles();
 
 	return (
-		<Container className={classes.container}>
+		<Paper className={classes.container}>
 			<Typography className={classes.title} gutterBottom>
 				Online Friends
 			</Typography>
@@ -70,7 +71,7 @@ const Rightbar = ({ profile }) => {
 			<Link href="#" className={classes.link} varinat="body2">
 				Music
 			</Link>
-		</Container>
+		</Paper>
 	);
 };
 

@@ -6,9 +6,11 @@ const Feed = () => {
 	const classes = useStyles();
 	return (
 		<>
-			{Posts.map((p) => (
-				<Post key={p.id} post={p} />
-			))}
+			<div className={classes.paper}>
+				{Posts.map((p) => (
+					<Post key={p.id} post={p} />
+				))}
+			</div>
 		</>
 	);
 };
