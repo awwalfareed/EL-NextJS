@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import ShowMoreText from "react-show-more-text";
 
-const Review = ({ user }) => {
+const Suggestions = ({ user }) => {
 	const classes = useStyles();
 	return (
 		<Paper className={classes.PaperMargin} variant="outlined">
@@ -52,4 +52,4 @@ const Review = ({ user }) => {
 	);
 };
 
-export default Review;
+export default Suggestions;
