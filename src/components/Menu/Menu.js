@@ -1,6 +1,7 @@
 import { Box } from "@material-ui/core";
 import { useStyles } from "./MenuStyles.js";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Link from "next/link";
 
 const defaultProps = {};
 const Menu = () => {
@@ -16,7 +17,9 @@ const Menu = () => {
 					About
 				</Box>
 				<Box order={2} p={1} m={1}>
-					Experience Story
+					<Link href="/profile/experience-story" passHref>
+						Experience Story
+					</Link>
 				</Box>
 				<Box order={3} p={1} m={1}>
 					Skills

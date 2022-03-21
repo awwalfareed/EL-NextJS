@@ -1,4 +1,4 @@
-import ExperienceStory from "../components/story/ExperienceStory";
+import ExperienceStory from "../../components/story/ExperienceStory";
 
 export default function story() {
     return (

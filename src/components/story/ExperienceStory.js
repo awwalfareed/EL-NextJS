@@ -3,19 +3,20 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Navbar from "../Navbar/Navbar";
-import Feed from "../Feeds/Feed";
+
 import { Avatar, Typography, Button, Box } from "@material-ui/core";
 import Image from "next/image";
 import { Sms } from "@material-ui/icons";
-import Introduction from "../introduction/Introduction";
+
 import Menu from "../Menu/Menu";
 import Review from "../Review/Review";
-import Suggestions from "../Suggestions/Suggestions";
+import Items from "../Items/Items";
+
 import { Users } from "../../../data";
-import Share from "../share/Share";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useStyles } from "./ExperienceStoryStyles";
-import Position from "../Suggestions/Suggestions";
+
 import Sample from "./Sample";
 
 export default function ExperienceStory() {
@@ -84,15 +85,19 @@ export default function ExperienceStory() {
 				<Paper className={classes.paperMenu} elevation={0}>
 					<Menu />
 				</Paper>
+
 				<div className={classes.root}>
-					
+					<Grid
+						container
+						spacing={3}
+						className={classes.fullContainerLg}
+					>
+						<Sample/>
+					</Grid>
 
 					<Grid container spacing={3} className={classes.fullConatinerSm}>
-						
-
 						<Grid item xs={9}>
-							
-							<Sample/>
+							<Sample />
 						</Grid>
 
 						<Grid item xs={3}>
